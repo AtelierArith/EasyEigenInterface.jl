@@ -1,0 +1,4 @@
+libhello*
+./deps/build
+./deps/build.log
+Manifest.toml
