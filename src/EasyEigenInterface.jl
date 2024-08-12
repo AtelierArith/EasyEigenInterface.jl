@@ -15,6 +15,8 @@ const AbstractEigenVecOrMat{T} = Union{AbstractEigenVector{T}, AbstractEigenMatr
     Libdl.RTLD_GLOBAL
 )
 
+export AbstractEigenVector, AbstractEigenMatrix
+
 Base.iterate(m::AbstractEigenMatrix, state=1) = state > length(m) ? nothing : (m[state], state+1)
 Base.size(m::AbstractEigenMatrix) = (rows(m),cols(m))
 Base.IndexStyle(::Type{<:AbstractEigenMatrix}) = IndexCartesian()
