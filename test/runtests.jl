@@ -24,6 +24,19 @@ end
 	@test jlm == m
 end
 
+@testset "Matrix3d" begin
+	x = Float32[1 2 3; 4 5 6; 7 8 9	]
+	@test Matrix3f(Matrix3f(x)) == Matrix3f(x) == x
+
+	x = Float64[1 2 3; 4 5 6; 7 8 9	]
+	@test Matrix3d(Matrix3d(x)) == Matrix3d(x) == x
+
+	@test_throws ArgumentError Matrix3d(rand(2,2))
+	@test_throws ArgumentError Matrix3d(rand(2,3))
+	@test_throws ArgumentError Matrix3d(rand(3,2))
+end
+
+
 @testset "Vector" begin
 	x = Float32[1, 2, 3]
 	@test VectorXf(VectorXf(x)) == VectorXf(x) == x
@@ -70,4 +83,10 @@ end
 	v = VectorXd(x)
 	m = convert(MatrixXd, v)
 	@test vec(EasyEigenInterface.example1(m)) == 3x
+end
+
+@testset "example2" begin
+	x = rand(2, 2)
+	m = Matrix2d(x)
+	@test EasyEigenInterface.example2(m) == 3x
 end
